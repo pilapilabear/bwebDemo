@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovelybear.dao.DictDetailDoMapper">
+  <resultMap id="BaseResultMap" type="com.lovelybear.domain.DictDetailDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dict_big_id" jdbcType="INTEGER" property="dictBigId" />
+    <result column="dict_small_id" jdbcType="INTEGER" property="dictSmallId" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="nm" jdbcType="VARCHAR" property="nm" />
+    <result column="is_leaf" jdbcType="INTEGER" property="isLeaf" />
+    <result column="is_sys_init" jdbcType="INTEGER" property="isSysInit" />
+    <result column="is_disable" jdbcType="INTEGER" property="isDisable" />
+    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="dict_big_nm" jdbcType="VARCHAR" property="dictBigNm" />
+    <result column="dict_small_nm" jdbcType="VARCHAR" property="dictSmallNm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, dict_big_id, dict_small_id, code, name, level, nm, is_leaf, is_sys_init, is_disable, 
+    desc, dict_big_nm, dict_small_nm
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dict_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_dict_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lovelybear.domain.DictDetailDo">
+    insert into sys_dict_detail (id, dict_big_id, dict_small_id, 
+      code, name, level, 
+      nm, is_leaf, is_sys_init, 
+      is_disable, desc, dict_big_nm, 
+      dict_small_nm)
+    values (#{id,jdbcType=INTEGER}, #{dictBigId,jdbcType=INTEGER}, #{dictSmallId,jdbcType=INTEGER}, 
+      #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, 
+      #{nm,jdbcType=VARCHAR}, #{isLeaf,jdbcType=INTEGER}, #{isSysInit,jdbcType=INTEGER}, 
+      #{isDisable,jdbcType=INTEGER}, #{desc,jdbcType=VARCHAR}, #{dictBigNm,jdbcType=VARCHAR}, 
+      #{dictSmallNm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lovelybear.domain.DictDetailDo">
+    insert into sys_dict_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="dictBigId != null">
+        dict_big_id,
+      </if>
+      <if test="dictSmallId != null">
+        dict_small_id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="nm != null">
+        nm,
+      </if>
+      <if test="isLeaf != null">
+        is_leaf,
+      </if>
+      <if test="isSysInit != null">
+        is_sys_init,
+      </if>
+      <if test="isDisable != null">
+        is_disable,
+      </if>
+      <if test="desc != null">
+        desc,
+      </if>
+      <if test="dictBigNm != null">
+        dict_big_nm,
+      </if>
+      <if test="dictSmallNm != null">
+        dict_small_nm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dictBigId != null">
+        #{dictBigId,jdbcType=INTEGER},
+      </if>
+      <if test="dictSmallId != null">
+        #{dictSmallId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="nm != null">
+        #{nm,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeaf != null">
+        #{isLeaf,jdbcType=INTEGER},
+      </if>
+      <if test="isSysInit != null">
+        #{isSysInit,jdbcType=INTEGER},
+      </if>
+      <if test="isDisable != null">
+        #{isDisable,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="dictBigNm != null">
+        #{dictBigNm,jdbcType=VARCHAR},
+      </if>
+      <if test="dictSmallNm != null">
+        #{dictSmallNm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lovelybear.domain.DictDetailDo">
+    update sys_dict_detail
+    <set>
+      <if test="dictBigId != null">
+        dict_big_id = #{dictBigId,jdbcType=INTEGER},
+      </if>
+      <if test="dictSmallId != null">
+        dict_small_id = #{dictSmallId,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="nm != null">
+        nm = #{nm,jdbcType=VARCHAR},
+      </if>
+      <if test="isLeaf != null">
+        is_leaf = #{isLeaf,jdbcType=INTEGER},
+      </if>
+      <if test="isSysInit != null">
+        is_sys_init = #{isSysInit,jdbcType=INTEGER},
+      </if>
+      <if test="isDisable != null">
+        is_disable = #{isDisable,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null">
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="dictBigNm != null">
+        dict_big_nm = #{dictBigNm,jdbcType=VARCHAR},
+      </if>
+      <if test="dictSmallNm != null">
+        dict_small_nm = #{dictSmallNm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lovelybear.domain.DictDetailDo">
+    update sys_dict_detail
+    set dict_big_id = #{dictBigId,jdbcType=INTEGER},
+      dict_small_id = #{dictSmallId,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      nm = #{nm,jdbcType=VARCHAR},
+      is_leaf = #{isLeaf,jdbcType=INTEGER},
+      is_sys_init = #{isSysInit,jdbcType=INTEGER},
+      is_disable = #{isDisable,jdbcType=INTEGER},
+      desc = #{desc,jdbcType=VARCHAR},
+      dict_big_nm = #{dictBigNm,jdbcType=VARCHAR},
+      dict_small_nm = #{dictSmallNm,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

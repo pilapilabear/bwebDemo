@@ -1,0 +1,66 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: lovelyBearApi
+  datasource:
+    url: jdbc:mysql://localhost:3306/demodb1?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: aaaaaa
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 初始化大小、最小、最大连接数
+    druid:
+      keepAlive: true
+      initial-size: 3
+      min-idle: 10
+      max-active: 100
+      max-wait: 60000
+      useUnfairLock: true
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      pool-prepared-statements: false
+      maxPoolPreparedStatementPerConnectionSize: -1
+      removeAbandoned: true
+      removeAbandonedTimeout: 300
+      validationQueryTimeout: 300
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      filters: stat,wall,slf4j
+      sessionStatEnable: false
+      #      principalSessionName: session_user_key
+      aop-patterns: com.lovelybear.controller.*,com.lovelybear.service.*,com.lovelybear.dao.*
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet:
+        allow: 127.0.0.1
+        reset-enable: false
+        login-username: admin
+        login-password: admin
+      filter:
+        stat:
+          mergeSql: true
+          db-type: mysql
+          log-slow-sql: true
+          slow-sql-millis: 2000
+        wall:
+          enabled: true
+          db-type: mysql
+          config:
+            delete-allow: false
+            drop-table-allow: false
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+mybatis:
+  type-aliases-package: com.lovelybear.domain
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  config: classpath:logback-spring.xml
+  path: D:/logs

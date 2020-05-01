@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovelybear.dao.EmployeeDoMapper">
+  <resultMap id="BaseResultMap" type="com.lovelybear.domain.EmployeeDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="landline_phone" jdbcType="VARCHAR" property="landlinePhone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="leader_id" jdbcType="INTEGER" property="leaderId" />
+    <result column="leader_name" jdbcType="VARCHAR" property="leaderName" />
+    <result column="politics_status_name" jdbcType="VARCHAR" property="politicsStatusName" />
+    <result column="politics_status_id" jdbcType="INTEGER" property="politicsStatusId" />
+    <result column="induction_date" jdbcType="TIMESTAMP" property="inductionDate" />
+    <result column="position_id" jdbcType="INTEGER" property="positionId" />
+    <result column="education_id" jdbcType="INTEGER" property="educationId" />
+    <result column="education_name" jdbcType="VARCHAR" property="educationName" />
+    <result column="nation_name" jdbcType="VARCHAR" property="nationName" />
+    <result column="nation_id" jdbcType="INTEGER" property="nationId" />
+    <result column="is_married" jdbcType="INTEGER" property="isMarried" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="birthplace_id" jdbcType="INTEGER" property="birthplaceId" />
+    <result column="birthplace_name" jdbcType="VARCHAR" property="birthplaceName" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, gender, birthday, telephone, landline_phone, address, leader_id, leader_name, 
+    politics_status_name, politics_status_id, induction_date, position_id, education_id, 
+    education_name, nation_name, nation_id, is_married, id_number, birthplace_id, birthplace_name, 
+    creator, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lovelybear.domain.EmployeeDo">
+    insert into sys_employee (id, name, gender, 
+      birthday, telephone, landline_phone, 
+      address, leader_id, leader_name, 
+      politics_status_name, politics_status_id, induction_date, 
+      position_id, education_id, education_name, 
+      nation_name, nation_id, is_married, 
+      id_number, birthplace_id, birthplace_name, 
+      creator, create_date)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{telephone,jdbcType=VARCHAR}, #{landlinePhone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{leaderId,jdbcType=INTEGER}, #{leaderName,jdbcType=VARCHAR}, 
+      #{politicsStatusName,jdbcType=VARCHAR}, #{politicsStatusId,jdbcType=INTEGER}, #{inductionDate,jdbcType=TIMESTAMP}, 
+      #{positionId,jdbcType=INTEGER}, #{educationId,jdbcType=INTEGER}, #{educationName,jdbcType=VARCHAR}, 
+      #{nationName,jdbcType=VARCHAR}, #{nationId,jdbcType=INTEGER}, #{isMarried,jdbcType=INTEGER}, 
+      #{idNumber,jdbcType=VARCHAR}, #{birthplaceId,jdbcType=INTEGER}, #{birthplaceName,jdbcType=VARCHAR}, 
+      #{creator,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lovelybear.domain.EmployeeDo">
+    insert into sys_employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="landlinePhone != null">
+        landline_phone,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="leaderId != null">
+        leader_id,
+      </if>
+      <if test="leaderName != null">
+        leader_name,
+      </if>
+      <if test="politicsStatusName != null">
+        politics_status_name,
+      </if>
+      <if test="politicsStatusId != null">
+        politics_status_id,
+      </if>
+      <if test="inductionDate != null">
+        induction_date,
+      </if>
+      <if test="positionId != null">
+        position_id,
+      </if>
+      <if test="educationId != null">
+        education_id,
+      </if>
+      <if test="educationName != null">
+        education_name,
+      </if>
+      <if test="nationName != null">
+        nation_name,
+      </if>
+      <if test="nationId != null">
+        nation_id,
+      </if>
+      <if test="isMarried != null">
+        is_married,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="birthplaceId != null">
+        birthplace_id,
+      </if>
+      <if test="birthplaceName != null">
+        birthplace_name,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="landlinePhone != null">
+        #{landlinePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderId != null">
+        #{leaderId,jdbcType=INTEGER},
+      </if>
+      <if test="leaderName != null">
+        #{leaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="politicsStatusName != null">
+        #{politicsStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="politicsStatusId != null">
+        #{politicsStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="inductionDate != null">
+        #{inductionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="positionId != null">
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="educationId != null">
+        #{educationId,jdbcType=INTEGER},
+      </if>
+      <if test="educationName != null">
+        #{educationName,jdbcType=VARCHAR},
+      </if>
+      <if test="nationName != null">
+        #{nationName,jdbcType=VARCHAR},
+      </if>
+      <if test="nationId != null">
+        #{nationId,jdbcType=INTEGER},
+      </if>
+      <if test="isMarried != null">
+        #{isMarried,jdbcType=INTEGER},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplaceId != null">
+        #{birthplaceId,jdbcType=INTEGER},
+      </if>
+      <if test="birthplaceName != null">
+        #{birthplaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lovelybear.domain.EmployeeDo">
+    update sys_employee
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="landlinePhone != null">
+        landline_phone = #{landlinePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderId != null">
+        leader_id = #{leaderId,jdbcType=INTEGER},
+      </if>
+      <if test="leaderName != null">
+        leader_name = #{leaderName,jdbcType=VARCHAR},
+      </if>
+      <if test="politicsStatusName != null">
+        politics_status_name = #{politicsStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="politicsStatusId != null">
+        politics_status_id = #{politicsStatusId,jdbcType=INTEGER},
+      </if>
+      <if test="inductionDate != null">
+        induction_date = #{inductionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="positionId != null">
+        position_id = #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="educationId != null">
+        education_id = #{educationId,jdbcType=INTEGER},
+      </if>
+      <if test="educationName != null">
+        education_name = #{educationName,jdbcType=VARCHAR},
+      </if>
+      <if test="nationName != null">
+        nation_name = #{nationName,jdbcType=VARCHAR},
+      </if>
+      <if test="nationId != null">
+        nation_id = #{nationId,jdbcType=INTEGER},
+      </if>
+      <if test="isMarried != null">
+        is_married = #{isMarried,jdbcType=INTEGER},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplaceId != null">
+        birthplace_id = #{birthplaceId,jdbcType=INTEGER},
+      </if>
+      <if test="birthplaceName != null">
+        birthplace_name = #{birthplaceName,jdbcType=VARCHAR},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lovelybear.domain.EmployeeDo">
+    update sys_employee
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      landline_phone = #{landlinePhone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      leader_id = #{leaderId,jdbcType=INTEGER},
+      leader_name = #{leaderName,jdbcType=VARCHAR},
+      politics_status_name = #{politicsStatusName,jdbcType=VARCHAR},
+      politics_status_id = #{politicsStatusId,jdbcType=INTEGER},
+      induction_date = #{inductionDate,jdbcType=TIMESTAMP},
+      position_id = #{positionId,jdbcType=INTEGER},
+      education_id = #{educationId,jdbcType=INTEGER},
+      education_name = #{educationName,jdbcType=VARCHAR},
+      nation_name = #{nationName,jdbcType=VARCHAR},
+      nation_id = #{nationId,jdbcType=INTEGER},
+      is_married = #{isMarried,jdbcType=INTEGER},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      birthplace_id = #{birthplaceId,jdbcType=INTEGER},
+      birthplace_name = #{birthplaceName,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

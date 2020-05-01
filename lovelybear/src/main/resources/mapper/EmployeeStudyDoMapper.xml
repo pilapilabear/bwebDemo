@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovelybear.dao.EmployeeStudyDoMapper">
+  <resultMap id="BaseResultMap" type="com.lovelybear.domain.EmployeeStudyDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="satrt_date" jdbcType="DATE" property="satrtDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
+    <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
+    <result column="education_id" jdbcType="INTEGER" property="educationId" />
+    <result column="education_name" jdbcType="VARCHAR" property="educationName" />
+    <result column="degree_id" jdbcType="INTEGER" property="degreeId" />
+    <result column="degree_name" jdbcType="VARCHAR" property="degreeName" />
+    <result column="is_national" jdbcType="INTEGER" property="isNational" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, satrt_date, end_date, school_name, education_id, education_name, degree_id, degree_name, 
+    is_national, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee_study
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee_study
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lovelybear.domain.EmployeeStudyDo">
+    insert into sys_employee_study (id, satrt_date, end_date, 
+      school_name, education_id, education_name, 
+      degree_id, degree_name, is_national, 
+      create_date)
+    values (#{id,jdbcType=INTEGER}, #{satrtDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{schoolName,jdbcType=VARCHAR}, #{educationId,jdbcType=INTEGER}, #{educationName,jdbcType=VARCHAR}, 
+      #{degreeId,jdbcType=INTEGER}, #{degreeName,jdbcType=VARCHAR}, #{isNational,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lovelybear.domain.EmployeeStudyDo">
+    insert into sys_employee_study
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="satrtDate != null">
+        satrt_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="schoolName != null">
+        school_name,
+      </if>
+      <if test="educationId != null">
+        education_id,
+      </if>
+      <if test="educationName != null">
+        education_name,
+      </if>
+      <if test="degreeId != null">
+        degree_id,
+      </if>
+      <if test="degreeName != null">
+        degree_name,
+      </if>
+      <if test="isNational != null">
+        is_national,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="satrtDate != null">
+        #{satrtDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="schoolName != null">
+        #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="educationId != null">
+        #{educationId,jdbcType=INTEGER},
+      </if>
+      <if test="educationName != null">
+        #{educationName,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeId != null">
+        #{degreeId,jdbcType=INTEGER},
+      </if>
+      <if test="degreeName != null">
+        #{degreeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isNational != null">
+        #{isNational,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lovelybear.domain.EmployeeStudyDo">
+    update sys_employee_study
+    <set>
+      <if test="satrtDate != null">
+        satrt_date = #{satrtDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="schoolName != null">
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="educationId != null">
+        education_id = #{educationId,jdbcType=INTEGER},
+      </if>
+      <if test="educationName != null">
+        education_name = #{educationName,jdbcType=VARCHAR},
+      </if>
+      <if test="degreeId != null">
+        degree_id = #{degreeId,jdbcType=INTEGER},
+      </if>
+      <if test="degreeName != null">
+        degree_name = #{degreeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isNational != null">
+        is_national = #{isNational,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lovelybear.domain.EmployeeStudyDo">
+    update sys_employee_study
+    set satrt_date = #{satrtDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      school_name = #{schoolName,jdbcType=VARCHAR},
+      education_id = #{educationId,jdbcType=INTEGER},
+      education_name = #{educationName,jdbcType=VARCHAR},
+      degree_id = #{degreeId,jdbcType=INTEGER},
+      degree_name = #{degreeName,jdbcType=VARCHAR},
+      is_national = #{isNational,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

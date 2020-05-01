@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lovelybear.dao.EmployeeRecordDoMapper">
+  <resultMap id="BaseResultMap" type="com.lovelybear.domain.EmployeeRecordDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="satrt_date" jdbcType="DATE" property="satrtDate" />
+    <result column="end_date" jdbcType="DATE" property="endDate" />
+    <result column="work_unit" jdbcType="VARCHAR" property="workUnit" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, satrt_date, end_date, work_unit, position, create_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_employee_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_employee_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lovelybear.domain.EmployeeRecordDo">
+    insert into sys_employee_record (id, satrt_date, end_date, 
+      work_unit, position, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{satrtDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, 
+      #{workUnit,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.lovelybear.domain.EmployeeRecordDo">
+    insert into sys_employee_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="satrtDate != null">
+        satrt_date,
+      </if>
+      <if test="endDate != null">
+        end_date,
+      </if>
+      <if test="workUnit != null">
+        work_unit,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="satrtDate != null">
+        #{satrtDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="workUnit != null">
+        #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lovelybear.domain.EmployeeRecordDo">
+    update sys_employee_record
+    <set>
+      <if test="satrtDate != null">
+        satrt_date = #{satrtDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null">
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="workUnit != null">
+        work_unit = #{workUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lovelybear.domain.EmployeeRecordDo">
+    update sys_employee_record
+    set satrt_date = #{satrtDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      work_unit = #{workUnit,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
